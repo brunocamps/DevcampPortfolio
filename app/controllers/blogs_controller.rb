@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   #before_action: calls teh method only for show, edit, update and destroy
 
   # GET /blogs
@@ -63,14 +63,25 @@ class BlogsController < ApplicationController
     end
   end
 
+  def toggle_status
+    #as it is declared in the before_action, it has access to blog
+    if @blog.draft?
+      @blog.published!
+    elsif
+      @blog.draft!
+    end
+    redirect_to blogs_url, notice: 'Post status has been updated'
+    #byebug
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.friendly.find(params[:id]) #overrides the default behavior
     end
 
     # Only allow a list of trusted parameters through.
     def blog_params
       params.require(:blog).permit(:title, :body)
     end
-end
+  end
