@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
 
 
-  resources :blogs
+  resources :blogs do 
+    member do
+      get :toggle_status
+    end
+
+  end
 
   root to: 'pages#home' #sets the root path, root of the app is the home page
   #set the root to pages#home
