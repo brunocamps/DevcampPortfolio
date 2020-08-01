@@ -8,4 +8,7 @@ class Blog < ApplicationRecord
     #changed it to title (title of the blog)
 
     validates_presence_of :title, :body #validate presence of both items to be filles
+
+    belongs_to :topic
+
 end
