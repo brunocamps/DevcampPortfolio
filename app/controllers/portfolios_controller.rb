@@ -1,6 +1,12 @@
 class PortfoliosController < ApplicationController
     def index #list all objects
         @portfolio_items = Portfolio.all #turn this available to the view
+        #it brings all portfolio items
+    end
+
+    def angular
+      @angular_portfolio_items = Portfolio.angular
+
     end
 
     def new
