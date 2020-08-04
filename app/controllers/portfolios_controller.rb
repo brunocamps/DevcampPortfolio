@@ -1,14 +1,23 @@
 class PortfoliosController < ApplicationController
     def index #list all objects
         @portfolio_items = Portfolio.all #turn this available to the view
+        #it brings all portfolio items
+    end
+
+    def angular
+      @angular_portfolio_items = Portfolio.angular
+
     end
 
     def new
         @portfolio_item = Portfolio.new
+
+        3.times { @portfolio_item.technologies.build } #build will instantiate 3 versions of this portfolio item with technologies
     end
 
     def create
-        @portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
+        @portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body,
+           technologies_attributes: [:name]))
         #these are the parameters that it is allowed to go through the system
         #title, subtitle and body are white-listed parameters
     
