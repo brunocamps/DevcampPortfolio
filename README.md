@@ -1,6 +1,7 @@
 # Devcamp Portfolio Application
 
 > This is a Ruby on Rails 6 application that allows users to create their own portfolios.
+> Dependencies (gems on Gemfile) will receive an update soon (security issues)
 
 ### Features
 
